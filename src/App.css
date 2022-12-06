@@ -1,38 +1,164 @@
-.App {
-  text-align: center;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
+body,
+html {
+  height: 100%;
+  background-color: #044389;
+  color: #fffeff;
+  font-family: sans-serif;
+}
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  width: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+.intro {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  background-color: #5995ed;
+  color: #fffeff;
+}
+.intro h1 {
+  margin-bottom: 20px;
+  font-size: clamp(60px, 10vw, 150px);
+  line-height: 1.6;
+  letter-spacing: 2px;
+}
+.intro p {
+  margin-bottom: 20px;
+  font-size: clamp(18px, 4vw, 40px);
+  line-height: 1.4;
+}
+.intro button {
+  border: none;
+  background-color: #e55381;
+  color: #fffeff;
+  display: inline-block;
+  width: auto;
+  padding: 10px 40px;
+  border-radius: 10px;
+  font-size: clamp(18px, 4vw, 30px);
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.intro button:hover {
+  background-color: #de2761;
+}
+
+.questions-container {
+  padding: 10px;
+  text-align: center;
+  display: grid;
+  place-content: center;
+}
+.questions-container.checked .answers {
   pointer-events: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.questions-container.checked .answers button {
+  opacity: 0.6;
+}
+.questions-container .question {
+  padding: 10px 0 30px;
+  margin: 20px;
+  border-bottom: 1px solid #fffeff;
+}
+.questions-container .question .q-number {
+  margin-bottom: 10px;
+  font-size: clamp(12px, 4vw, 14px);
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.questions-container .question h3 {
+  margin-bottom: 20px;
+  line-height: 1.3;
+  font-weight: normal;
+}
+.questions-container .question .answers {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.questions-container .question .answers button {
+  border: none;
+  background-color: transparent;
+  border: 2px solid #e55381;
+  color: #fffeff;
+  display: inline-block;
+  width: auto;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: clamp(12px, 3vw, 14px);
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+.questions-container .question .answers button.toggled {
+  background-color: #e55381;
+}
+.questions-container .question .answers button.wrong {
+  opacity: 0.8;
+  background-color: rgb(182, 0, 0);
+  border-color: rgb(182, 0, 0);
+}
+.questions-container .question .answers button.correct {
+  opacity: 1;
+  background-color: rgb(22, 170, 22);
+  border-color: rgb(22, 170, 22);
+}
+.questions-container .question .answers button:hover {
+  border-color: white;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.check-answers {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  padding-bottom: 100px;
+}
+.check-answers p {
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+.check-answers button {
+  border: none;
+  background-color: #e55381;
+  color: #fffeff;
+  display: inline-block;
+  width: auto;
+  padding: 10px 40px;
+  border-radius: 10px;
+  font-size: clamp(16px, 4vw, 20px);
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.check-answers button:hover {
+  background-color: #de2761;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/*# sourceMappingURL=App.css.map */
