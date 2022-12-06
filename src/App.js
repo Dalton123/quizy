@@ -17,7 +17,7 @@ function App() {
 
   const fetchData = async () => {
     const response = await fetch(
-      "https://opentdb.com/api.php?amount=5&difficulty=easy"
+      "https://opentdb.com/api.php?amount=2&difficulty=easy"
     );
     const data = await response.json();
     // Decode the HTML entities and add some extra values to state
@@ -98,7 +98,11 @@ function App() {
           before checking your answers.
         </p>
       );
-    } else if (score !== numOfQuestions) {
+    } else if (score === 0) {
+      return (
+        <p>{`Unlucky! Why not try again and see if you can do better!`}</p>
+      );
+    } else if (score > 0 && score !== numOfQuestions) {
       return <p>{`Well done, you got ${score}/${numOfQuestions}`}</p>;
     } else {
       return (
@@ -113,14 +117,16 @@ function App() {
     <div className="App">
       {score === numOfQuestions && <Confetti />}
       {!ready && <Intro readyUp={() => readyUp()} />}
-      <div className={`questions-container ${checked && "checked"}`}>
+      <div
+        className={`questions-container ${allQuestionsAnswered && "checked"}`}
+      >
         {questions &&
           questions.map((q) => {
             return (
               <Question
                 key={nanoid()}
                 id={q.id}
-                checked={checked}
+                checked={allQuestionsAnswered}
                 question={q.question}
                 allAnswers={q.options}
                 correctAnswer={q.correct_answer}
@@ -133,8 +139,12 @@ function App() {
       {
         <div className="check-answers">
           {UIMessage()}
-          {!checked && <button onClick={checkAnswers}>Check answers</button>}
-          {checked && <button onClick={resetGame}>Play again?</button>}
+          {!allQuestionsAnswered && (
+            <button onClick={checkAnswers}>Check answers</button>
+          )}
+          {allQuestionsAnswered && (
+            <button onClick={resetGame}>Play again?</button>
+          )}
         </div>
       }
     </div>
