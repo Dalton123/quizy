@@ -13,13 +13,13 @@ function App() {
   const [score, setScore] = useState();
   const [checked, setChecked] = useState(false);
   const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false);
-  const [ready, setReady] = useState(true);
+  const [ready, setReady] = useState(false);
   const [reset, setReset] = useState(false);
   const numOfQuestions = questions.length;
 
   const fetchData = async () => {
     const response = await fetch(
-      "https://opentdb.com/api.php?amount=2&difficulty=easy"
+      "https://opentdb.com/api.php?amount=5&difficulty=easy"
     );
     const data = await response.json();
     // Decode the HTML entities and add some extra values to state
