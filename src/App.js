@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { nanoid } from "nanoid";
 import { decode } from "html-entities";
-import Intro from "./Intro";
-import Question from "./Question";
+import Intro from "./components/Intro";
+import Question from "./components/Question";
+import CheckAnswers from "./components/CheckAnswers";
+import Github from "./components/Github";
 import Confetti from "react-confetti";
 
 function App() {
@@ -11,7 +13,7 @@ function App() {
   const [score, setScore] = useState();
   const [checked, setChecked] = useState(false);
   const [allQuestionsAnswered, setAllQuestionsAnswered] = useState(false);
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(true);
   const [reset, setReset] = useState(false);
   const numOfQuestions = questions.length;
 
@@ -71,48 +73,6 @@ function App() {
     );
   };
 
-  function checkAnswers() {
-    let userScore = 0;
-    // Check to make sure each question has been answered
-    const allAnswered = questions.every((q) => {
-      return q.hasOwnProperty("selected") && q.selected === true;
-    });
-    // Updated state if they have all been answered
-    allAnswered && setAllQuestionsAnswered((prev) => !allQuestionsAnswered);
-
-    // Add 1 to the score for every correct answer
-    questions.forEach(
-      (d) => decode(d.userGuess) === decode(d.correct_answer) && userScore++
-    );
-    setScore((prev) => userScore);
-    setChecked((prev) => true);
-  }
-
-  function UIMessage() {
-    if (!checked) {
-      return <p>Once you're finished, click below to check your answers.</p>;
-    } else if (checked && !allQuestionsAnswered) {
-      return (
-        <p>
-          Looks like you missed some questions, please try answer them all
-          before checking your answers.
-        </p>
-      );
-    } else if (score === 0) {
-      return (
-        <p>{`Unlucky! Why not try again and see if you can do better!`}</p>
-      );
-    } else if (score > 0 && score !== numOfQuestions) {
-      return <p>{`Well done, you got ${score}/${numOfQuestions}`}</p>;
-    } else {
-      return (
-        <p>
-          {`Well done, you got them all correct! ${score}/${numOfQuestions}`};
-        </p>
-      );
-    }
-  }
-
   return (
     <div className="App">
       {score === numOfQuestions && <Confetti />}
@@ -136,17 +96,19 @@ function App() {
             );
           })}
       </div>
-      {
-        <div className="check-answers">
-          {UIMessage()}
-          {!allQuestionsAnswered && (
-            <button onClick={checkAnswers}>Check answers</button>
-          )}
-          {allQuestionsAnswered && (
-            <button onClick={resetGame}>Play again?</button>
-          )}
-        </div>
-      }
+      <CheckAnswers
+        questions={questions}
+        score={score}
+        checked={checked}
+        allQuestionsAnswered={allQuestionsAnswered}
+        setScore={setScore}
+        setChecked={setChecked}
+        setAllQuestionsAnswered={setAllQuestionsAnswered}
+        numOfQuestions={numOfQuestions}
+        resetGame={resetGame}
+      />
+
+      <Github link="https://github.com/Dalton123/quizy" />
     </div>
   );
 }

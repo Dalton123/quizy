@@ -138,7 +138,8 @@ menu {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 100px;
+  text-align: center;
+  padding: 20px 20px 100px;
 }
 .check-answers p {
   line-height: 1.4;
@@ -159,6 +160,13 @@ menu {
 }
 .check-answers button:hover {
   background-color: #de2761;
+}
+
+.github {
+  position: fixed;
+  bottom: 10px;
+  right: 15px;
+  filter: invert(1);
 }
 
 /*# sourceMappingURL=App.css.map */
