@@ -1,5 +1,7 @@
 # Practice React Project: Quizy
 
+See this app live here - [https://quizy-uv5q.onrender.com](https://quizy-uv5q.onrender.com)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

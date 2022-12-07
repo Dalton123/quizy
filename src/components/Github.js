@@ -1,7 +1,7 @@
 export default function Github({ link }) {
   return (
     <div className="github">
-      <a href="https://github.com/Dalton123/quizy">
+      <a href={link}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
